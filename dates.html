@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Weeks & Date Calculator</title>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Production Calculator</h1>
+    <form id="production-form" class="col s12">
+      <div class="row">
+        <div class="col s6 input-field">
+         <i class="material-icons prefix">today</i>
+          <label for="production-date" class="label">Production Date:</label>
+          <input type="text" id="production-date" class="form-control" required onchange="calculateData()">
+        </div>
+        <div class="col s6 input-field">
+         <i class="material-icons prefix">subscriptions</i>
+          <label for="episodes-count" class="label">Episodes Number:</label>
+          <input type="number" id="episodes-count" class="validate" min="1" required onchange="calculateData()">
+        </div>
+        <div class="col s6 input-field">
+         <i class="material-icons prefix">description</i>
+          <label for="pages-per-episode" class="label">Pages Per Episode:</label>
+          <input type="number" id="pages-per-episode" class="validate" min="1" required onchange="calculateData()">
+        </div>
+        <div class="col s6 input-field">
+         <i class="material-icons prefix">note</i>
+          <label for="pages-per-day" class="label">Pages Per Day:</label>
+          <input type="number" step="0.125" id="pages-per-day" class="validate" min="1" required onchange="calculateData()">
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col s12">
+        <h4>Production Dates</h4>
+        <div class="row">
+          <div class="col s6" id="start-date-result"></div>
+          <div class="col s6" id="end-date-result"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <h4>Production Breakdown</h4>
+        <div id="production-Days-per-episode-result"></div>
+        <div id="production-days-result"></div>
+        <div id="calendar-days-result"></div>
+        <div id="production-weeks-result"></div>
+        <div id="production-months-result"></div>
+        <div id="production-months-weeks-days-result"></div>
+      </div>
+      <div class="col s6">
+        <h4>Time to Production</h4>
+        <div id="days-to-production"></div>
+        <div id="weeks-result"></div>
+        <div id="months-result"></div>
+        <div id="months-weeks-days-result"></div>
+      </div>
+    </div>
+  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
