@@ -22,6 +22,7 @@
          <i class="material-icons prefix">subscriptions</i>
           <label for="episodes-count" class="label">Episodes Number:</label>
           <input type="number" id="episodes-count" class="validate" min="1" required onchange="calculateData()">
+          <span class="helper-text">For films write 1</span>
         </div>
         <div class="col s6 input-field">
          <i class="material-icons prefix">description</i>
@@ -36,7 +37,7 @@
         <div class="col s6 input-field">
          <i class="material-icons prefix">event</i>
           <label for="working-days-week" class="label">Filming days per Week:</label>
-          <input type="number" step="1" id="working-days-week" class="validate" value="6" min="5" max="6" required onchange="calculateData()">
+          <input type="number" step="1" id="working-days-week" class="validate" value="6" min="1" max="6" required onchange="calculateData()">
         </div>
       </div>
     </form>
@@ -67,7 +68,7 @@
         <div id="months-weeks-days-result"></div>
       </div>
     </div>
-      <footer> Courtesy of <a href="tafrah.sa">Tafrah Production</a> made by <a href="mailto:omar@tafrah.sa">Omar</a>
+      <footer> Courtesy of <a href="https://tafrah.sa">Tafrah Production</a> made by <a href="https://linktr.ee/okamoudi">Omar</a>
       </footer>
   </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
