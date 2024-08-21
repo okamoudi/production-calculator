@@ -2,6 +2,7 @@ const productionDateInput = document.getElementById('production-date');
 const pagesPerEpisodeInput = document.getElementById('pages-per-episode'); // New field
 const pagesPerDayInput = document.getElementById('pages-per-day'); // New field
 const episodeCountInput = document.getElementById('episodes-count'); // New field
+const workingDaysWeekInput = document.getElementById('working-days-week'); // New field
 const calendarDaysResult = document.getElementById('calendar-days-result');
 const weeksResult = document.getElementById('weeks-result');
 const monthsResult = document.getElementById('months-result');
@@ -31,6 +32,7 @@ function calculateData() {
   const pagesPerEpisode = parseInt(pagesPerEpisodeInput.value) || 0; // Handle potential empty input
   const pagesPerDay = parseFloat(pagesPerDayInput.value) || 1; // Handle potential empty input
   const episodes_count = parseInt(episodeCountInput.value) || 1; // Handle potential empty input
+  const workingDaysWeek = parseInt(workingDaysWeekInput.value) || 1; // Handle potential empty input
 
   // Check if production date is after today
   if (productionDate < today) {
@@ -53,7 +55,7 @@ function calculateData() {
     
   const daysOfProduction = estimatedDays; 
     
-    const productionCalendarDays = Math.ceil(estimatedDays / 6 * 7);
+    const productionCalendarDays = Math.ceil(estimatedDays / workingDaysWeek * 7);
     
   // Calculate difference in milliseconds
   const diffInMs = productionDate.getTime() - today.getTime();
@@ -97,7 +99,7 @@ function calculateData() {
         endDateResult.textContent = `Production End Date: ${formattedEndDate}`;
             productionMonthsWeeksDaysResult.innerHTML = `Production <br> Months: ${prodMonths} Weeks : ${prodWeeksReminder} Days: ${prodDaysReminder}`;
           productionDaysPerEpisodeResult.textContent = `Production Days Per Episode: ${Math.round(daysPerEpisode*1000)/1000}`;
-          calendarDaysResult.textContent = `Calendar Days: ${productionCalendarDays}`;
+          calendarDaysResult.textContent = `Calendar Days: ${productionCalendarDays} based on 6 workdays a week`;
           productionDaysResult.textContent = `Production Days: ${daysOfProduction}`;
           productionWeeksResult.textContent = `Production Weeks (approx.): ${prodWeeks}`;
           productionMonthsResult.textContent = `Production Months (approx.): ${prodMonths}`;
