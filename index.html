@@ -14,28 +14,53 @@
     <a href="https://okamoudi.com"><i class="material-icons prefix">reply</i>Back to Blog</a>
     <form id="production-form" class="col s12">
       <div class="row">
-        <div class="col s6 input-field">
+        <div class="col s12 m6 input-field">
          <i class="material-icons prefix">today</i>
           <label for="production-date" class="label">Production Date:</label>
           <input type="text" id="production-date" class="form-control" required onchange="calculateData()">
         </div>
-        <div class="col s6 input-field">
+        <div class="col s12 m6 input-field">
+        <div class="row">
+        <div class="col s1 input-field">
+         <i class="material-icons prefix">movie</i>
+        </div>
+          <div class="col s4 input-field">
+            <label>
+              <input type="radio" id="film-project" class="validate" 
+              value="film" name="project-type" required checked 
+              onchange="projectTypeSelection()">
+              <span>Film</span>
+            </label>
+          </div>
+          <div class="col s5 input-field">
+            <label>
+              <input type="radio" id="series-project" class="validate" 
+              value="Series" name="project-type" required 
+              onchange="projectTypeSelection()">
+              <span>Series</span>
+            </label>
+          </div>
+        </div>
+          <span class="col s11 offset-s1 helper-text">Pick Project Type</span>
+        </div>
+        <div id="episodes-count-div" class="col s12 m6 input-field">
          <i class="material-icons prefix">subscriptions</i>
           <label for="episodes-count" class="label">Episodes Number:</label>
-          <input type="number" id="episodes-count" class="validate" min="1" required onchange="calculateData()">
-          <span class="helper-text">For films write 1</span>
+          <input type="number" id="episodes-count" class="validate" 
+          value="1" min="1" required onchange="episodeCountReset()">
         </div>
-        <div class="col s6 input-field">
+        <div class="col s12 m6 input-field">
          <i class="material-icons prefix">description</i>
-          <label for="pages-per-episode" class="label">Pages Per Episode:</label>
-          <input type="number" id="pages-per-episode" class="validate" min="1" required onchange="calculateData()">
+          <label for="pages" id="pages-label" class="label">Script Length:</label>
+          <input type="number" id="pages" class="validate" min="1" required onchange="calculateData()">
+          <span class="helper-text">Number of pages</span>
         </div>
-        <div class="col s6 input-field">
+        <div class="col s12 m6 input-field">
          <i class="material-icons prefix">note</i>
           <label for="pages-per-day" class="label">Pages Per Day:</label>
           <input type="number" step="0.125" id="pages-per-day" class="validate" min="1" required onchange="calculateData()">
         </div>
-        <div class="col s6 input-field">
+        <div class="col s12 m6 input-field">
          <i class="material-icons prefix">event</i>
           <label for="working-days-week" class="label">Filming days per Week:</label>
           <input type="number" step="1" id="working-days-week" class="validate" value="6" min="1" max="6" required onchange="calculateData()">
@@ -46,13 +71,13 @@
       <div class="col s12">
         <h4>Production Dates</h4>
         <div class="row">
-          <div class="col s6" id="start-date-result"></div>
-          <div class="col s6" id="end-date-result"></div>
+          <div class="col s12 m6" id="start-date-result"></div>
+          <div class="col s12 m6" id="end-date-result"></div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col s6">
+      <div class="col s12 m6">
         <h4>Production Breakdown</h4>
         <div id="production-Days-per-episode-result"></div>
         <div id="production-days-result"></div>
@@ -61,7 +86,7 @@
         <div id="production-months-result"></div>
         <div id="production-months-weeks-days-result"></div>
       </div>
-      <div class="col s6">
+      <div class="col s12 m6">
         <h4>Time to Production</h4>
         <div id="days-to-production"></div>
         <div id="weeks-result"></div>
