@@ -173,7 +173,9 @@ function loadProjectTypeSelection() {
     if (projectTypToSelect) {
       projectTypToSelect.checked = true;
       if (projectTypToSelect.value == "film") {
-      episodeCountDiv.hidden = true;
+        episodeCountDiv.hidden = true;
+      }else{
+        episodeCountDiv.hidden = false;
       }
     }
   }
