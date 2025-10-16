@@ -29,6 +29,19 @@ const picker = new Pikaday({
     },
   minDate: new Date() // Set minimum date to today
 });
+  
+function selectedProjectType(){
+  return document.querySelector('input[name="project-type"]:checked');;
+}
+
+function isFilm(){
+  if(selectedProjectType().value == "film"){
+    return true
+  }else{
+    return false
+  }
+}
+
 
 function calculateData() {
   const today = new Date();
@@ -99,15 +112,25 @@ function calculateData() {
       if (daysOfProduction <= 0) {
         endDateResult.textContent = '';
     }else{
-        startDateResult.textContent = `Production Start Date: ${formattedStartDate}`;
-        endDateResult.textContent = `Production End Date: ${formattedEndDate}`;
-            productionMonthsWeeksDaysResult.innerHTML = `Production <br> Months: ${prodMonths} Weeks : ${prodWeeksReminder} Days: ${prodDaysReminder}`;
-          productionDaysPerEpisodeResult.textContent = `Production Days Per Episode: ${Math.round(daysPerEpisode*1000)/1000}`;
-          calendarDaysResult.textContent = `Calendar Days: ${productionCalendarDays} based on 6 workdays a week`;
-          productionDaysResult.textContent = `Production Days: ${daysOfProduction}`;
-          productionWeeksResult.textContent = `Production Weeks (approx.): ${prodWeeks}`;
-          productionMonthsResult.textContent = `Production Months (approx.): ${prodMonths}`;
-
+        startDateResult.textContent =
+         `Production Start Date: ${formattedStartDate}`;
+        endDateResult.textContent =
+         `Production End Date: ${formattedEndDate}`;
+        productionMonthsWeeksDaysResult.innerHTML = `Production <br> Months: ${prodMonths} Weeks : ${prodWeeksReminder} Days: ${prodDaysReminder}`;
+        calendarDaysResult.textContent =
+         `Calendar Days: ${productionCalendarDays} based on 6 workdays a week`;
+        productionDaysResult.textContent =
+         `Production Days: ${daysOfProduction}`;
+        productionWeeksResult.textContent =
+         `Production Weeks (approx.): ${prodWeeks}`;
+        productionMonthsResult.textContent =
+         `Production Months (approx.): ${prodMonths}`;
+        if(isFilm()){
+          productionDaysPerEpisodeResult.textContent = '';
+        } else {
+          productionDaysPerEpisodeResult.textContent =
+           `Production Days Per Episode: ${Math.round(daysPerEpisode*1000)/1000}`;
+        }
 
     }
   // Store values in session storage
@@ -117,16 +140,15 @@ function calculateData() {
   sessionStorage.setItem('episodeCount', episodeCountInput.value);
 }
 function episodeCountReset(){
-  const selectedProjectType = document.querySelector('input[name="project-type"]:checked');
-  if (selectedProjectType.value != 'film'){
+
+  if (!isFilm()){
       lastEnteredEpisodeNumber = parseInt(episodeCountInput.value);
       sessionStorage.setItem('lastEnteredEpisodeNumber', lastEnteredEpisodeNumber);
   }
   calculateData();
 }
 function projectTypeSelection(){
-  const selectedProjectType = document.querySelector('input[name="project-type"]:checked');
-  if (selectedProjectType.value == "film"){
+  if (isFilm()){
     episodeCountInput.value = 1;
     episodeCountDiv.hidden = true;
     pagesLable.innerHTML = "Script Length:";
@@ -135,7 +157,7 @@ function projectTypeSelection(){
     pagesLable.innerHTML = "Average Episode Script Length:";
     episodeCountInput.value = lastEnteredEpisodeNumber;
   }
-  saveProjectTypeSelection(selectedProjectType);
+  saveProjectTypeSelection(selectedProjectType());
   calculateData();
 }
 function saveProjectTypeSelection(projectType) {
