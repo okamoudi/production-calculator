@@ -22,6 +22,7 @@ const filmProjectOptionInput = document.getElementById('film-project');
 const seriesProjectOptionInput = document.getElementById('series-project');
 const episodeCountDiv = document.getElementById('episodes-count-div'); // New field
 const pagesLable = document.getElementById('pages-label'); // New field
+const pagesSuffix = document.getElementById('pages-suffix'); // New field
 var lastEnteredEpisodeNumber = 1;
 
 const picker = new Pikaday({
@@ -145,9 +146,11 @@ function projectTypeSelection(){
     episodeCountInput.value = 1;
     episodeCountDiv.hidden = true;
     pagesLable.innerHTML = "Script Length:";
+    pagesSuffix.innerHTML = "Pages";
   } else {
     episodeCountDiv.hidden = false;
     pagesLable.innerHTML = "Average Episode Script Length:";
+    pagesSuffix.innerHTML = "Pages/Episode";
     episodeCountInput.value = lastEnteredEpisodeNumber;
   }
   saveProjectTypeSelection(selectedProjectType());
