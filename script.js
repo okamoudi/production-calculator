@@ -27,7 +27,7 @@ const picker = new Pikaday({
     toString(date,format){
         return moment(date).format('YYYY-MM-DD');
     },
-  minDate: new Date() // Set minimum date to today
+  minDate: new Date(2000,0,1) // You can go back up to 20 years if you want to make a simulation
 });
   
 function selectedProjectType(){
@@ -51,19 +51,6 @@ function calculateData() {
   const episodes_count = parseInt(episodeCountInput.value) || 1; // Handle potential empty input
   const workingDaysWeek = parseInt(workingDaysWeekInput.value) || 6; // Handle potential empty input
 
-  // Check if production date is after today
-  if (productionDate < today) {
-    daysResult.textContent = 'Production date must be after today.';
-    weeksResult.textContent = '';
-    monthsResult.textContent = '';
-    monthsWeeksDaysResult.textContent = '';
-    endDateResult.textContent = '';
-    productionDaysResult.textContent = '';
-    productionWeeksResult.textContent = '';
-    productionMonthsResult.textContent = '';
-    productionMonthsWeeksDaysResult.textContent = '';
-    return;
-  }
     // Calculate estimated days based on pages (replace with your actual logic)
   
     const daysPerEpisode = (pages / pagesPerDay);
@@ -78,7 +65,7 @@ function calculateData() {
   const diffInMs = productionDate.getTime() - today.getTime();
 
   // Calculate days (rounded down)
-  const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  const days = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
 
   // Calculate weeks (rounded down)
   const weeks = Math.floor(days / 7);
@@ -105,10 +92,19 @@ function calculateData() {
   const formattedEndDate = endDate.toISOString().slice(0, 10);
 
   // Display results
-  daysResult.textContent = `Days until Production: ${days}`;
-  weeksResult.textContent = `Weeks to Production (approx.): ${weeks}`;
-  monthsResult.textContent = `Months to Production (approx.): ${months}`;
+  // Check if production date is after today
+  if (productionDate < today) {
+    daysResult.textContent = 'Production Started';
+    weeksResult.textContent = '';
+    monthsResult.textContent = '';
+    monthsWeeksDaysResult.textContent = '';
+  } else {
+    daysResult.textContent = `Days until Production: ${days}`;
+    weeksResult.textContent = `Weeks to Production (approx.): ${weeks}`;
+    monthsResult.textContent = `Months to Production (approx.): ${months}`;
     monthsWeeksDaysResult.innerHTML = `To production <br> Months: ${months} Weeks : ${weeksReminder} Days: ${daysReminder}`;
+  }
+
       if (daysOfProduction <= 0) {
         endDateResult.textContent = '';
     }else{
